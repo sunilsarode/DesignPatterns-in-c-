@@ -35,6 +35,10 @@ class FlyRocketPowered:public FlyBehavior {
 
 public:
  void fly() {
+  /*
+      if you want to write some logic to fly behavior , you write the private method , to hide the implementation details and 
+       call it from this method to get the result. This is abstraction and class is encapsulating the methods using private and public access specifier , it is encapsulation.  
+  */
    cout<<"I'm flying  flying with a rocket !"<<endl;
  }
 };
