@@ -129,6 +129,8 @@ public:
     
 };
 
+//Prefer composition over inheritance?  https://stackoverflow.com/questions/49002/prefer-composition-over-inheritance
+//What does it mean when one says “Encapsulate what varies”?  https://softwareengineering.stackexchange.com/questions/337413/what-does-it-mean-when-one-says-encapsulate-what-varies
 int main(){
 
  Duck* mallard = new MallardDuck();
