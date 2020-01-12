@@ -35,7 +35,7 @@ class FlyRocketPowered:public FlyBehavior {
 
 public:
  void fly() {
-   cout<<"I'm flying  fl ying with a rocket !"<<endl;
+   cout<<"I'm flying  flying with a rocket !"<<endl;
  }
 };
 
@@ -68,24 +68,30 @@ class Duck{
 
 public:
    
-
+ FlyBehavior* flyBehavior;
+ QuackBehavior* quackBehavior;
  
  Duck() {
  }
 
  virtual void display()=0;
 
- void performFly( FlyBehavior* flyBehavior ) {
+ void performFly() {
     flyBehavior->fly();
  }
- void performQuack(QuackBehavior* quackBehavior) {
+ void performQuack() {
     quackBehavior->quack();
  }
  void swim() {
     cout<<"All ducks float, even decoys!"<<endl;
  }
 
-
+ void setFlyBehavior(FlyBehavior* fb){
+    flyBehavior=fb;
+ }
+ void setQuackBehavior(QuackBehavior* qb){
+    quackBehavior=qb;
+ }
    
 };
 
@@ -93,7 +99,8 @@ class MallardDuck :public Duck{
 
 public:
    MallardDuck(){
-       
+       flyBehavior=new FlyWithWings();
+       quackBehavior=new Quack();
    }
 
    void display(){
@@ -107,7 +114,8 @@ class ModelDuck :public Duck{
 
 public:
    ModelDuck(){
-       
+       quackBehavior=new Quack();
+       flyBehavior=new FlyNoWay();
    }
 
    void display(){
@@ -120,13 +128,14 @@ public:
 int main(){
 
  Duck* mallard = new MallardDuck();
- mallard->performQuack(new Quack());
- mallard->performFly(new FlyWithWings());
+ mallard->performQuack();
+ mallard->performFly();
 
  Duck* model=new ModelDuck();
- model->performQuack(new Quack());
- model->performFly(new FlyNoWay());
- model->performFly(new FlyRocketPowered());
+ model->performQuack();
+ model->performFly();
+ model->setFlyBehavior(new FlyRocketPowered());
+ model->performFly();
 
  delete mallard;
  delete model;
